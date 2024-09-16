@@ -1,3 +1,7 @@
+'''
+Task 3: Number Guessing Game
+'''
+
 import random
 
 num = random.randint(1, 100)
