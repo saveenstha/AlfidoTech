@@ -1,11 +1,23 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import sqlite3
 
-# 1. Initialize an empty DataFrame to store transactions (income/expense)
-transactions = pd.DataFrame(columns=['Date', 'Type', 'Category', 'Amount', 'Description'])
+# 1. connect to sqlite dbase (create if not exist)
+conn = sqlite3.connect('finance.db')
+c = conn.cursor()
 
+# 2. Create transactions table (if it doens't exist)
+def create_table():
+    c.execute('''CREATE TABLE IF NOT EXISTS transactions
+                     (id INTEGER PRIMARY KEY AUTOINCREMENT,
+                      date TEXT,
+                      type TEXT,
+                      category TEXT,
+                      amount REAL,
+                      description TEXT)''')
+    conn.commit()
 
-# 2. Function to add income
+# 3. Function to add income
 def add_income():
     amount = float(input("Enter the income amount: "))
     date = input("Enter the date (YYYY-MM-DD): ")
