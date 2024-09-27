@@ -1,40 +1,41 @@
-import sqlite3
-import  datetime
-
-conn = sqlite3.connect("pft.db")
-cur = conn.cursor()
+from task_1 import *
 
 def main():
-    print("Welcome to the Personal Finance Tracker!")
     while True:
+        print("\nPersonal Finance Tracker Menu:")
         print("1. Add Income")
         print("2. Add Expense")
-        print("3. Set Budget Goal")
-        print("4. View Report")
-        print("5. Export Data")
-        print("6. Exit")
-        choice = input("Enter your choice: ")
+        print("3. Generate Report")
+        print("4. Visualize Expenses")
+        print("5. Set Budget Goal")
+        print("6. Save Data to CSV")
+        print("7. Load Data from CSV")
+        print("8. Exit")
+
+        choice = input("Select an option (1-8): ")
 
         if choice == '1':
-            # Logic for adding income
-            pass
+            add_income()
         elif choice == '2':
-            # Logic for adding expense
-            pass
+            add_expense()
         elif choice == '3':
-            # Logic for setting a budget goal
-            pass
+            generate_report()
         elif choice == '4':
-            # Logic for viewing reports
-            pass
+            visualize_expenses()
         elif choice == '5':
-            # Logic for exporting data
-            pass
+            set_budget_goal()
         elif choice == '6':
-            print("Exiting the program...")
+            filename = input("Enter the filename to save (e.g., 'data.csv'): ")
+            save_to_csv(filename)
+        elif choice == '7':
+            filename = input("Enter the filename to load (e.g., 'data.csv'): ")
+            load_from_csv(filename)
+        elif choice == '8':
+            print("Exiting the application.")
             break
         else:
-            print("Invalid choice. Please try again.")
+            print("Invalid option. Please select a valid choice.")
 
-    if __name__ == "__main__":
-        main()
+
+if __name__ == '__main__':
+    main()
