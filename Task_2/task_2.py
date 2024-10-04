@@ -26,7 +26,7 @@ def scrape_data(url, tag):
                 for element in elements:
                     all_data.append(element.get_text(strip=True))
 
-                next_page = soup.find('a', string='Next')
+                next_page = soup.find('a', string=['Next', 'next'])
                 if next_page and 'href' in next_page.attrs:
                     current_url = urljoin(current_url, next_page['href'])
                 else:
